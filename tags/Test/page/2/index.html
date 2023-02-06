@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <html theme="dark"  banner="true"  >
-<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
-<link href="/fontawesome/css/brands.css" rel="stylesheet">
-<link href="/fontawesome/css/solid.css" rel="stylesheet">
-<script src="/js/color.global.min.js"></script>
-<script src="/js/light-dark-storage.js"></script>
+<link href="/theme-preview-test/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/theme-preview-test/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/theme-preview-test/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/theme-preview-test/js/color.global.min.js" ></script>
+<script src="/theme-preview-test/js/light-dark-storage.js" ></script>
 <head>
   <meta charset="utf-8">
   
@@ -90,7 +90,7 @@
   }
 
   let colors;
-  fetch('/colors.json')
+  fetch("/theme-preview-test/colors.json")
     .then((res) => {
       return res.json();
     })
@@ -143,7 +143,7 @@
   
     
 <div id="banner" class="">
-  <img src="/assets/banner.png" itemprop="image">
+  <img src="/theme-preview-test/assets/banner.png" itemprop="image">
   <div id="banner-dim"></div>
 </div>
  
@@ -245,7 +245,22 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">Categories</h3>
-      <div class="category-box"></div>
+      <div class="category-box">
+            <a class="category-link" href="/categories/Foo/">
+                Foo
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/Foo/Bar/">
+                Bar
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/Foo/Bar/Baz/">
+                Baz
+                <div class="category-count">1</div>
+            </a>
+        </div></div></div></div></div>
     </div>
   </div>
 
@@ -442,6 +457,6 @@
 </script>
 
   </div>
-  <script src="/js/light-dark-switch.js"></script>
+  <script src="/theme-preview-test/js/light-dark-switch.js"></script>
 </body>
 </html>
