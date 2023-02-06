@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html theme="dark"  banner="true"  >
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js"></script>
+<script src="/js/light-dark-storage.js"></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Markdown Style test | Vix Preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This post is originated from here and is used for testing markdown style. This post contains nearly every markdown usage. Make sure all the markdown elements below show up correctly.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown Style test">
+<meta property="og:url" content="http://example.com/2018/07/24/markdown/index.html">
+<meta property="og:site_name" content="Vix Preview">
+<meta property="og:description" content="This post is originated from here and is used for testing markdown style. This post contains nearly every markdown usage. Make sure all the markdown elements below show up correctly.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/img-2.png">
+<meta property="article:published_time" content="2018-07-24T15:31:06.000Z">
+<meta property="article:modified_time" content="2023-01-30T11:09:33.791Z">
+<meta property="article:author" content="Bocchi the Username">
+<meta property="article:tag" content="Test">
+<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="Style">
+<meta property="article:tag" content="Display">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/img-2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Vix Preview" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+   
+<div class="widget color-picker">
+  <h3 class="widget-title">Theme Preview</h3>
+  <div id="banner-toggle-bar">
+    <label for="vehicle1">Show Banner</label><br>
+    <input type="checkbox" id="banner-checkbox" name="banner-checkbox" value="show">
+  </div>
+  <div id="preset-list">
+    
+      <div class="preset-btn" style="background-color: #f486aa;" data-hue="0"></div>
+    
+      <div class="preset-btn" style="background-color: #fa8978;" data-hue="30"></div>
+    
+      <div class="preset-btn" style="background-color: #ee9748;" data-hue="60"></div>
+    
+      <div class="preset-btn" style="background-color: #00cab1;" data-hue="180"></div>
+    
+      <div class="preset-btn" style="background-color: #4ab8fd;" data-hue="240"></div>
+    
+      <div class="preset-btn" style="background-color: #8ca8ff;" data-hue="270"></div>
+    
+      <div class="preset-btn" style="background-color: #bc98f9;" data-hue="300"></div>
+    
+      <div class="preset-btn" style="background-color: #df8cd8;" data-hue="330"></div>
+    
+      <div class="preset-btn" style="background-color: #ec88c2;" data-hue="345"></div>
+     
+  </div>
+  <input type="range" min="0" max="360" value="260" class="slider" id="colorSlider" step="5" style="width: 100%;">
+  <p>Hue: <span id="hueValue"></span></p>
+</div>
+<script>
+  let slider = document.getElementById("colorSlider");
+  let output = document.getElementById("hueValue");
+  let presetList = document.getElementById("preset-list");
+  let r = document.querySelector(':root');
+  output.innerHTML = slider.value; // Display the default slider value
+
+  function getColorNode(l, c, h) {
+    return new Color("oklch", [l, c, h]).to("srgb").toString({format: "hex"});
+  }
+  function setHue(hue) {
+    localStorage.setItem('hue', hue);
+    output.innerHTML = hue;
+    slider.value = hue;
+    for (let [theme, list] of Object.entries(colors)) {
+      for (let color of list) {
+        r.style.setProperty(`--${theme}-${color.name}`, getColorNode(color.l, color.c, hue));
+      }
+    }
+  }
+
+  let colors;
+  fetch('/colors.json')
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      colors = data;
+      let storedHue = localStorage.getItem('hue');
+      if (storedHue) {
+        setHue(storedHue);
+      }    
+    }) 
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+    let hue = this.value;
+    setHue(hue);
+  }
+
+  presetList.onclick = function(event) {
+    let hue = event.target.dataset.hue;
+    if (hue) {
+      setHue(hue);
+    }
+  }
+
+  // Banner switch
+
+  function enableBanner() {
+    r.setAttribute("banner", "true");
+    localStorage.setItem('showBanner', "true");
+  }
+  
+  function disableBanner() {
+    r.setAttribute("banner", "false");
+    localStorage.setItem('showBanner', "false");
+  }
+
+  let showBannerCheck = document.querySelector("input[name=banner-checkbox]");
+  if (r.getAttribute("banner") == "true") {
+    showBannerCheck.checked = true;
+  }
+  showBannerCheck.addEventListener('change', function() {
+    if (this.checked) {
+      enableBanner();
+    } else {
+      disableBanner();
+    }
+  });
+</script>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vix-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Vix Preview </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="nav-search-btn" class="nav-icon">
+      <span class="material-symbols-rounded">palette</span>
+    </a>
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="Search" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="left-bar">
+      
+        <aside id="sidebar">
+  <div class="widget-wrap">
+  <div class="info-card">
+    <image src=/assets/avatar.png class="avatar" ></image>
+    <div class="info">
+      <div class="username">Bocchi the Username </div>
+      <div class="dot"></div>
+      <div class="subtitle">This is the subtitle </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+ 
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/Foo/">
+                Foo
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/Foo/Bar/">
+                Bar
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/Foo/Bar/Baz/">
+                Baz
+                <div class="category-count">1</div>
+            </a>
+        </div></div></div></div></div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bar/" rel="tag">Bar</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Baz/" rel="tag">Baz</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Code/" rel="tag">Code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Control/" rel="tag">Control</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Display/" rel="tag">Display</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Foo/" rel="tag">Foo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gallery/" rel="tag">Gallery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Image/" rel="tag">Image</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/" rel="tag">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Link/" rel="tag">Link</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Plugin/" rel="tag">Plugin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Style/" rel="tag">Style</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tags/" rel="tag">Tags</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/" rel="tag">Test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Title/" rel="tag">Title</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Video/" rel="tag">Video</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2019/07 ">
+          July 2019 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2018/07 ">
+          July 2018 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2013/12 ">
+          December 2013 
+          <div class="archive-count">15 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/code-highlight/">Code Highlight Style test</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/markdown/">Markdown Style test</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/26/images/">Images Test</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/no-title/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/excerpts/">Excerpts</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</aside>
+      
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-markdown" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cldsguqmt000jdk9k5owv71s0">
+        <img src="/assets/img-2.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="title-bar">
+  <div class="title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        Markdown Style test
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <a href="/2018/07/24/markdown/" class="meta-info">
+  <time class="dt-published" datetime="2018-07-24T15:31:06.000Z" itemprop="datePublished">2018-07-24</time>
+</a>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.2k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Display/" rel="tag">Display</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Style/" rel="tag">Style</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/" rel="tag">Test</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>This post is originated from <a target="_blank" rel="noopener" href="https://gist.github.com/apackeer/4159268">here</a> and is used for testing markdown style. This post contains nearly every markdown usage. Make sure all the markdown elements below show up correctly.</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># H1</span></span><br><span class="line"><span class="section">## H2</span></span><br><span class="line"><span class="section">### H3</span></span><br><span class="line"><span class="section">#### H4</span></span><br><span class="line"><span class="section">##### H5</span></span><br><span class="line"><span class="section">###### H6</span></span><br><span class="line"></span><br><span class="line">Alternatively, for H1 and H2, an underline-ish style:</span><br><span class="line"></span><br><span class="line"><span class="section">Alt-H1</span></span><br><span class="line"><span class="section">======</span></span><br><span class="line"></span><br><span class="line"><span class="section">Alt-H2</span></span><br><span class="line"><span class="section">------</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="H1"><a href="#H1" class="headerlink" title="H1"></a>H1</h1><h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><h3 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h3><h4 id="H4"><a href="#H4" class="headerlink" title="H4"></a>H4</h4><h5 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h5><h6 id="H6"><a href="#H6" class="headerlink" title="H6"></a>H6</h6><p>Alternatively, for H1 and H2, an underline-ish style:</p>
+<h1 id="Alt-H1"><a href="#Alt-H1" class="headerlink" title="Alt-H1"></a>Alt-H1</h1><h2 id="Alt-H2"><a href="#Alt-H2" class="headerlink" title="Alt-H2"></a>Alt-H2</h2><h2 id="Emphasis"><a href="#Emphasis" class="headerlink" title="Emphasis"></a>Emphasis</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Emphasis, aka italics, with <span class="emphasis">*asterisks*</span> or <span class="emphasis">_underscores_</span>.</span><br><span class="line"></span><br><span class="line">Strong emphasis, aka bold, with <span class="strong">**asterisks**</span> or <span class="strong">__underscores__</span>.</span><br><span class="line"></span><br><span class="line">Combined emphasis with <span class="strong">**asterisks and <span class="emphasis">_underscores_</span>**</span>.</span><br><span class="line"></span><br><span class="line">Strikethrough uses two tildes. ~~Scratch this.~~</span><br></pre></td></tr></table></figure>
+
+<p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.</p>
+<p>Strong emphasis, aka bold, with <strong>asterisks</strong> or <strong>underscores</strong>.</p>
+<p>Combined emphasis with <strong>asterisks and <em>underscores</em></strong>.</p>
+<p>Strikethrough uses two tildes. <del>Scratch this.</del></p>
+<h2 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> First ordered list item</span><br><span class="line"><span class="bullet">2.</span> Another item</span><br><span class="line"><span class="bullet">  *</span> Unordered sub-list.</span><br><span class="line"><span class="bullet">1.</span> Actual numbers don&#x27;t matter, just that it&#x27;s a number</span><br><span class="line"><span class="bullet">  1.</span> Ordered sub-list</span><br><span class="line"><span class="bullet">4.</span> And another item.</span><br><span class="line"></span><br><span class="line">   You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we&#x27;ll use three here to also align the raw Markdown).</span><br><span class="line"></span><br><span class="line">   To have a line break without a paragraph, you will need to use two trailing spaces.  </span><br><span class="line">   Note that this line is separate, but within the same paragraph.  </span><br><span class="line">   (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)</span><br><span class="line"></span><br><span class="line"><span class="bullet">*</span> Unordered list can use asterisks</span><br><span class="line"><span class="bullet">-</span> Or minuses</span><br><span class="line"><span class="bullet">+</span> Or pluses</span><br><span class="line"><span class="bullet">-</span> Paragraph In unordered list</span><br><span class="line"></span><br><span class="line">  For example like this.</span><br><span class="line"></span><br><span class="line">Common Paragraph with some text.</span><br><span class="line">And more text.</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>First ordered list item</li>
+<li>Another item</li>
+</ol>
+<ul>
+<li>Unordered sub-list.</li>
+</ul>
+<ol>
+<li><p>Actual numbers don’t matter, just that it’s a number</p>
+</li>
+<li><p>Ordered sub-list</p>
+</li>
+<li><p>And another item.</p>
+<p>You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we’ll use three here to also align the raw Markdown).</p>
+<p>To have a line break without a paragraph, you will need to use two trailing spaces.<br>Note that this line is separate, but within the same paragraph.<br>(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)</p>
+</li>
+</ol>
+<ul>
+<li>Unordered list can use asterisks</li>
+</ul>
+<ul>
+<li>Or minuses</li>
+</ul>
+<ul>
+<li>Or pluses</li>
+</ul>
+<ul>
+<li><p>Paragraph In unordered list</p>
+<p>For example like this.</p>
+</li>
+</ul>
+<p>Common Paragraph with some text.<br>And more text.</p>
+<h2 id="Inline-HTML"><a href="#Inline-HTML" class="headerlink" title="Inline HTML"></a>Inline HTML</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>To reboot your computer, press <span class="language-xml"><span class="tag">&lt;<span class="name">kbd</span>&gt;</span></span>ctrl<span class="language-xml"><span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span>+<span class="language-xml"><span class="tag">&lt;<span class="name">kbd</span>&gt;</span></span>alt<span class="language-xml"><span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span>+<span class="language-xml"><span class="tag">&lt;<span class="name">kbd</span>&gt;</span></span>del<span class="language-xml"><span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span>.<span class="language-xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>To reboot your computer, press <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>del</kbd>.</p>
+
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span></span><br><span class="line"><span class="code">    &lt;dt&gt;Definition list&lt;/dt&gt;</span></span><br><span class="line"><span class="code">    &lt;dd&gt;Is something people use sometimes.&lt;/dd&gt;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    &lt;dt&gt;Markdown in HTML&lt;/dt&gt;</span></span><br><span class="line"><span class="code">    &lt;dd&gt;Does *not* work **very** well. Use HTML &lt;em&gt;tags&lt;/em&gt;.&lt;/dd&gt;</span></span><br><span class="line"><span class="code">&lt;/dl&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<dl>
+    <dt>Definition list</dt>
+    <dd>Is something people use sometimes.</dd>
+
+<pre><code>&lt;dt&gt;Markdown in HTML&lt;/dt&gt;
+&lt;dd&gt;Does *not* work **very** well. Use HTML &lt;em&gt;tags&lt;/em&gt;.&lt;/dd&gt;
+</code></pre>
+</dl>
+
+
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">I&#x27;m an inline-style link</span>](<span class="link">https://www.google.com</span>)</span><br><span class="line"></span><br><span class="line">[<span class="string">I&#x27;m an inline-style link with title</span>](<span class="link">https://www.google.com &quot;Google&#x27;s Homepage&quot;</span>)</span><br><span class="line"></span><br><span class="line">[<span class="string">I&#x27;m a reference-style link</span>][<span class="symbol">Arbitrary case-insensitive reference text</span>]</span><br><span class="line"></span><br><span class="line">[<span class="string">I&#x27;m a relative reference to a repository file</span>](<span class="link">../blob/master/LICENSE</span>)</span><br><span class="line"></span><br><span class="line">[<span class="string">You can use numbers for reference-style link definitions</span>][<span class="symbol">1</span>]</span><br><span class="line"></span><br><span class="line">Or leave it empty and use the [link text itself]</span><br><span class="line"></span><br><span class="line">Some text to show that the reference links can follow later.</span><br><span class="line"></span><br><span class="line">[<span class="symbol">arbitrary case-insensitive reference text</span>]: <span class="link">https://hexo.io</span></span><br><span class="line">[<span class="symbol">1</span>]: <span class="link">https://hexo.io/docs/</span></span><br><span class="line">[<span class="symbol">link text itself</span>]: <span class="link">https://hexo.io/api/</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.google.com/">I’m an inline-style link</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.google.com/" title="Google&#39;s Homepage">I’m an inline-style link with title</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/">I’m a reference-style link</a></p>
+<p><a href="../blob/master/LICENSE">I’m a relative reference to a repository file</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/docs/">You can use numbers for reference-style link definitions</a></p>
+<p>Or leave it empty and use the <a target="_blank" rel="noopener" href="https://hexo.io/api/">link text itself</a></p>
+<p>Some text to show that the reference links can follow later.</p>
+<h2 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hover to see the title text:</span><br><span class="line"></span><br><span class="line">Inline-style:</span><br><span class="line"></span><br><span class="line">![<span class="string">alt text</span>](<span class="link">https://hexo.io/icon/favicon-196x196.png &quot;Logo Title Text 1&quot;</span>)</span><br><span class="line"></span><br><span class="line">Reference-style:</span><br><span class="line">![<span class="string">alt text</span>][<span class="symbol">logo</span>]</span><br><span class="line"></span><br><span class="line">[<span class="symbol">logo</span>]: <span class="link">https://hexo.io/icon/favicon-196x196.png &quot;Logo Title Text 2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>hover to see the title text:</p>
+<p>Inline-style:</p>
+<p><img src="https://hexo.io/icon/favicon-196x196.png" alt="alt text" title="Logo Title Text 1"></p>
+<p>Reference-style:<br><img src="https://hexo.io/icon/favicon-196x196.png" alt="alt text" title="Logo Title Text 2"></p>
+<h2 id="Code-and-Syntax-Highlighting"><a href="#Code-and-Syntax-Highlighting" class="headerlink" title="Code and Syntax Highlighting"></a>Code and Syntax Highlighting</h2><p>Inline <code>code</code> has <code>back-ticks around</code> it.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">&quot;JavaScript syntax highlighting&quot;</span>;</span><br><span class="line"><span class="title function_">alert</span>(s);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;Python syntax highlighting&quot;</span></span><br><span class="line"><span class="built_in">print</span> s</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">No language indicated, so no syntax highlighting.</span><br><span class="line">But let&#x27;s throw in a &lt;b&gt;tag&lt;/b&gt;.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|                |ASCII                          |HTML                         |</span><br><span class="line">|----------------|-------------------------------|-----------------------------|</span><br><span class="line">|Single backticks|<span class="code">`&#x27;Isn&#x27;t this fun?&#x27;`</span>            |&#x27;Isn&#x27;t this fun?&#x27;            |</span><br><span class="line">|Quotes          |<span class="code">`&quot;Isn&#x27;t this fun?&quot;`</span>            |&quot;Isn&#x27;t this fun?&quot;            |</span><br><span class="line">|Dashes          |<span class="code">`-- is en-dash, --- is em-dash`</span>|-- is en-dash, --- is em-dash|</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ASCII</th>
+<th>HTML</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Single backticks</td>
+<td><code>&#39;Isn&#39;t this fun?&#39;</code></td>
+<td>‘Isn’t this fun?’</td>
+</tr>
+<tr>
+<td>Quotes</td>
+<td><code>&quot;Isn&#39;t this fun?&quot;</code></td>
+<td>“Isn’t this fun?”</td>
+</tr>
+<tr>
+<td>Dashes</td>
+<td><code>-- is en-dash, --- is em-dash</code></td>
+<td>– is en-dash, — is em-dash</td>
+</tr>
+</tbody></table>
+<p>Colons can be used to align columns.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| Tables        | Are           | Cool  |</span><br><span class="line">| ------------- |:-------------:| -----:|</span><br><span class="line">| col 3 is      | right-aligned |  |</span><br><span class="line">| col 2 is      | centered      |    |</span><br><span class="line">| zebra stripes | are neat      |   </span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th align="center">Are</th>
+<th align="right">Cool</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>col 3 is</td>
+<td align="center">right-aligned</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td align="center">centered</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td align="center">are neat</td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<p>The outer pipes (|) are optional, and you don’t need to make the raw Markdown line up prettily. You can also use inline Markdown.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Markdown | Less | Pretty</span><br><span class="line">--- | --- | ---</span><br><span class="line"><span class="emphasis">*Still*</span> | <span class="code">`renders`</span> | <span class="strong">**nicely**</span></span><br><span class="line">1 | 2 | 3</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>Less</th>
+<th>Pretty</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>Still</em></td>
+<td><code>renders</code></td>
+<td><strong>nicely</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>You can find more information about <strong>LaTeX</strong> mathematical expressions <a target="_blank" rel="noopener" href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
+</blockquote>
+<h2 id="Blockquotes"><a href="#Blockquotes" class="headerlink" title="Blockquotes"></a>Blockquotes</h2><blockquote>
+<p>Blockquotes are very handy in email to emulate reply text.<br>This line is part of the same quote.</p>
+</blockquote>
+<p>Quote break.</p>
+<blockquote>
+<p>This is a very long line that will still be quoted properly when it wraps. Oh boy let’s keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can <em>put</em> <strong>Markdown</strong> into a blockquote.</p>
+</blockquote>
+<h2 id="Horizontal-Rule"><a href="#Horizontal-Rule" class="headerlink" title="Horizontal Rule"></a>Horizontal Rule</h2><p>Three or more…</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">Hyphens</span><br><span class="line"></span><br><span class="line"><span class="strong">***</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">Asterisks</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">___</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">Underscores</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Hyphens</p>
+<hr>
+<p>Asterisks</p>
+<hr>
+<p>Underscores</p>
+<h2 id="Line-Breaks"><a href="#Line-Breaks" class="headerlink" title="Line Breaks"></a>Line Breaks</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Here&#x27;s a line for us to start with.</span><br><span class="line"></span><br><span class="line">This line is separated from the one above by two newlines, so it will be a <span class="emphasis">*separate paragraph*</span>.</span><br><span class="line"></span><br><span class="line">This line is also a separate paragraph, but...</span><br><span class="line">This line is only separated by a single newline, so it&#x27;s a separate line in the <span class="emphasis">*same paragraph*</span>.</span><br></pre></td></tr></table></figure>
+
+
+<p>Here’s a line for us to start with.</p>
+<p>This line is separated from the one above by two newlines, so it will be a <em>separate paragraph</em>.</p>
+<p>This line is also a separate paragraph, but…<br>This line is only separated by a single newline, so it’s a separate line in the <em>same paragraph</em>.</p>
+<hr>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">This is a regular paragraph.</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span></span><br><span class="line"><span class="code">    &lt;tr&gt;</span></span><br><span class="line"><span class="code">        &lt;td&gt;Foo&lt;/td&gt;</span></span><br><span class="line"><span class="code">    &lt;/tr&gt;</span></span><br><span class="line"><span class="code">&lt;/table&gt;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">This is another regular paragraph.</span><br></pre></td></tr></table></figure>
+
+<p>This is a regular paragraph.</p>
+<table>
+    <tr>
+        <td>Foo</td>
+    </tr>
+</table>
+
+<p>This is another regular paragraph.</p>
+<h2 id="Youtube-videos"><a href="#Youtube-videos" class="headerlink" title="Youtube videos"></a>Youtube videos</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.youtube.com/watch?feature=player_embedded&amp;v=ARted4RniaU</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="language-xml">&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://img.youtube.com/vi/ARted4RniaU/0.jpg&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">alt</span>=<span class="string">&quot;IMAGE ALT TEXT HERE&quot;</span> <span class="attr">width</span>=<span class="string">&quot;240&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">border</span>=<span class="string">&quot;10&quot;</span> /&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">Pure markdown version:</span><br><span class="line"></span><br><span class="line">[<span class="string">![IMAGE ALT TEXT HERE</span>](<span class="link">https://img.youtube.com/vi/ARted4RniaU/0.jpg</span>)](<span class="link">https://www.youtube.com/watch?v=ARted4RniaU</span>)</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.youtube.com/watch?feature=player_embedded&v=ARted4RniaU
+" target="_blank"><img src="https://img.youtube.com/vi/ARted4RniaU/0.jpg"
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a></p>
+<p>Pure markdown version:</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ARted4RniaU"><img src="https://img.youtube.com/vi/ARted4RniaU/0.jpg" alt="IMAGE ALT TEXT HERE"></a></p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2019/07/25/code-highlight/"
+      title="Code Highlight Style test"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        Code Highlight Style test
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2013/12/26/images/"
+      title="Images Test"
+     >
+
+    <p class="title-text">
+      
+        Images Test
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <div id="comment-card" class="comment-card">
+    <div class="title-bar">
+      <div class="title-dot"></div>
+      <div class="main-title">Comments </div>
+    </div>
+    <div id="vcomments"></div>
+  </div>
+  <script>
+      new Valine({
+          el: '#vcomments',
+          appId: "otj6RnDqPlfDyRNYDKdBkpm0-gzGzoHsz",
+          appKey: "nbXonETzfUSG9j8ojZ8eXmZb"
+      })
+  </script>
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Bocchi the Username<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vix">Vix</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

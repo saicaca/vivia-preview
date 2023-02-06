@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html theme="dark"  banner="true"  >
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js"></script>
+<script src="/js/light-dark-storage.js"></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Tag Plugins | Vix Preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This post is used for testing tag plugins. See docs for more info. Block QuoteNormal blockquote Praesent diam elit, interdum ut pulvinar placerat, imperdiet at magna.  Quote from a bookDo not just see">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tag Plugins">
+<meta property="og:url" content="http://example.com/2013/12/25/tag-plugins/index.html">
+<meta property="og:site_name" content="Vix Preview">
+<meta property="og:description" content="This post is used for testing tag plugins. See docs for more info. Block QuoteNormal blockquote Praesent diam elit, interdum ut pulvinar placerat, imperdiet at magna.  Quote from a bookDo not just see">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/79905307_p0.jpg">
+<meta property="article:published_time" content="2013-12-24T16:14:39.000Z">
+<meta property="article:modified_time" content="2023-01-19T15:12:27.171Z">
+<meta property="article:author" content="Bocchi the Username">
+<meta property="article:tag" content="Test">
+<meta property="article:tag" content="Display">
+<meta property="article:tag" content="Plugin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/79905307_p0.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vix Preview" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+   
+<div class="widget color-picker">
+  <h3 class="widget-title">Theme Preview</h3>
+  <div id="banner-toggle-bar">
+    <label for="vehicle1">Show Banner</label><br>
+    <input type="checkbox" id="banner-checkbox" name="banner-checkbox" value="show">
+  </div>
+  <div id="preset-list">
+    
+      <div class="preset-btn" style="background-color: #f486aa;" data-hue="0"></div>
+    
+      <div class="preset-btn" style="background-color: #fa8978;" data-hue="30"></div>
+    
+      <div class="preset-btn" style="background-color: #ee9748;" data-hue="60"></div>
+    
+      <div class="preset-btn" style="background-color: #00cab1;" data-hue="180"></div>
+    
+      <div class="preset-btn" style="background-color: #4ab8fd;" data-hue="240"></div>
+    
+      <div class="preset-btn" style="background-color: #8ca8ff;" data-hue="270"></div>
+    
+      <div class="preset-btn" style="background-color: #bc98f9;" data-hue="300"></div>
+    
+      <div class="preset-btn" style="background-color: #df8cd8;" data-hue="330"></div>
+    
+      <div class="preset-btn" style="background-color: #ec88c2;" data-hue="345"></div>
+     
+  </div>
+  <input type="range" min="0" max="360" value="260" class="slider" id="colorSlider" step="5" style="width: 100%;">
+  <p>Hue: <span id="hueValue"></span></p>
+</div>
+<script>
+  let slider = document.getElementById("colorSlider");
+  let output = document.getElementById("hueValue");
+  let presetList = document.getElementById("preset-list");
+  let r = document.querySelector(':root');
+  output.innerHTML = slider.value; // Display the default slider value
+
+  function getColorNode(l, c, h) {
+    return new Color("oklch", [l, c, h]).to("srgb").toString({format: "hex"});
+  }
+  function setHue(hue) {
+    localStorage.setItem('hue', hue);
+    output.innerHTML = hue;
+    slider.value = hue;
+    for (let [theme, list] of Object.entries(colors)) {
+      for (let color of list) {
+        r.style.setProperty(`--${theme}-${color.name}`, getColorNode(color.l, color.c, hue));
+      }
+    }
+  }
+
+  let colors;
+  fetch('/colors.json')
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      colors = data;
+      let storedHue = localStorage.getItem('hue');
+      if (storedHue) {
+        setHue(storedHue);
+      }    
+    }) 
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+    let hue = this.value;
+    setHue(hue);
+  }
+
+  presetList.onclick = function(event) {
+    let hue = event.target.dataset.hue;
+    if (hue) {
+      setHue(hue);
+    }
+  }
+
+  // Banner switch
+
+  function enableBanner() {
+    r.setAttribute("banner", "true");
+    localStorage.setItem('showBanner', "true");
+  }
+  
+  function disableBanner() {
+    r.setAttribute("banner", "false");
+    localStorage.setItem('showBanner', "false");
+  }
+
+  let showBannerCheck = document.querySelector("input[name=banner-checkbox]");
+  if (r.getAttribute("banner") == "true") {
+    showBannerCheck.checked = true;
+  }
+  showBannerCheck.addEventListener('change', function() {
+    if (this.checked) {
+      enableBanner();
+    } else {
+      disableBanner();
+    }
+  });
+</script>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vix-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Vix Preview </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="nav-search-btn" class="nav-icon">
+      <span class="material-symbols-rounded">palette</span>
+    </a>
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="Search" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="left-bar">
+      
+        <aside id="sidebar">
+  <div class="widget-wrap">
+  <div class="info-card">
+    <image src=/assets/avatar.png class="avatar" ></image>
+    <div class="info">
+      <div class="username">Bocchi the Username </div>
+      <div class="dot"></div>
+      <div class="subtitle">This is the subtitle </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+ 
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/Foo/">
+                Foo
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/Foo/Bar/">
+                Bar
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/Foo/Bar/Baz/">
+                Baz
+                <div class="category-count">1</div>
+            </a>
+        </div></div></div></div></div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bar/" rel="tag">Bar</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Baz/" rel="tag">Baz</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Code/" rel="tag">Code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Control/" rel="tag">Control</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Display/" rel="tag">Display</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Foo/" rel="tag">Foo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gallery/" rel="tag">Gallery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Image/" rel="tag">Image</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/" rel="tag">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Link/" rel="tag">Link</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Plugin/" rel="tag">Plugin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Style/" rel="tag">Style</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tags/" rel="tag">Tags</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/" rel="tag">Test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Title/" rel="tag">Title</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Video/" rel="tag">Video</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2019/07 ">
+          July 2019 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2018/07 ">
+          July 2018 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2013/12 ">
+          December 2013 
+          <div class="archive-count">15 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/code-highlight/">Code Highlight Style test</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/markdown/">Markdown Style test</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/26/images/">Images Test</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/no-title/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/excerpts/">Excerpts</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</aside>
+      
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-tag-plugins" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cldsguqmw000qdk9kfcw47x6c">
+        <img src="/assets/79905307_p0.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="title-bar">
+  <div class="title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        Tag Plugins
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <a href="/2013/12/25/tag-plugins/" class="meta-info">
+  <time class="dt-published" datetime="2013-12-24T16:14:39.000Z" itemprop="datePublished">2013-12-25</time>
+</a>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            512 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Display/" rel="tag">Display</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Plugin/" rel="tag">Plugin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/" rel="tag">Test</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>This post is used for testing tag plugins. See <a target="_blank" rel="noopener" href="http://zespia.tw/hexo/docs/tag-plugins.html">docs</a> for more info.</p>
+<h2 id="Block-Quote"><a href="#Block-Quote" class="headerlink" title="Block Quote"></a>Block Quote</h2><h3 id="Normal-blockquote"><a href="#Normal-blockquote" class="headerlink" title="Normal blockquote"></a>Normal blockquote</h3><blockquote>
+<p>Praesent diam elit, interdum ut pulvinar placerat, imperdiet at magna.</p>
+</blockquote>
+<h3 id="Quote-from-a-book"><a href="#Quote-from-a-book" class="headerlink" title="Quote from a book"></a>Quote from a book</h3><blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
+
+<h3 id="Quote-from-Twitter"><a href="#Quote-from-Twitter" class="headerlink" title="Quote from Twitter"></a>Quote from Twitter</h3><blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a target="_blank" rel="noopener" href="http://devdocs.io/">http://devdocs.io</a></p>
+<footer><strong>@DevDocs</strong><cite><a target="_blank" rel="noopener" href="https://twitter.com/devdocs/status/356095192085962752">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
+
+<h3 id="Quote-from-an-article-on-the-web"><a href="#Quote-from-an-article-on-the-web" class="headerlink" title="Quote from an article on the web"></a>Quote from an article on the web</h3><blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a target="_blank" rel="noopener" href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html">Welcome to Island Marketing</a></cite></footer></blockquote>
+
+<h2 id="Code-Block"><a href="#Code-Block" class="headerlink" title="Code Block"></a>Code Block</h2><h3 id="Normal-code-block"><a href="#Normal-code-block" class="headerlink" title="Normal code block"></a>Normal code block</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(&#x27;Hello World!&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="With-caption"><a href="#With-caption" class="headerlink" title="With caption"></a>With caption</h3><figure class="highlight plaintext"><figcaption><span>Array.map</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.map(callback[, thisArg])</span><br></pre></td></tr></table></figure>
+
+<h3 id="With-caption-and-URL"><a href="#With-caption-and-URL" class="headerlink" title="With caption and URL"></a>With caption and URL</h3><figure class="highlight plaintext"><figcaption><span>.compact</span><a target="_blank" rel="noopener" href="http://underscorejs.org/#compact">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.compact([0, 1, false, 2, ‘’, 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<h3 id="With-marked-lines"><a href="#With-marked-lines" class="headerlink" title="With marked lines"></a>With marked lines</h3><p>Line 1,7-8,10 should be marked with different color.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line marked"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hostname = <span class="string">&#x27;127.0.0.1&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">1337</span>;</span><br><span class="line"></span><br><span class="line">http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line marked">  res.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123; <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span> &#125;);</span><br><span class="line marked">  res.<span class="title function_">end</span>(<span class="string">&#x27;Hello World\n&#x27;</span>);</span><br><span class="line">&#125;).<span class="title function_">listen</span>(port, hostname, <span class="function">() =&gt;</span> &#123;</span><br><span class="line marked">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server running at http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Note: Theme’s style should support <code>.highlight.line.marked</code> (recommend to use the selection or current line color).</p>
+<h3 id="Gist"><a href="#Gist" class="headerlink" title="Gist"></a>Gist</h3><script src="//gist.github.com/996818.js"></script>
+
+<h3 id="jsFiddle"><a href="#jsFiddle" class="headerlink" title="jsFiddle"></a>jsFiddle</h3><iframe scrolling="no" width="100%" height="300" src="https://jsfiddle.net/ccWP7/embedded/js,resources,html,css,result/light" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<h2 id="Pullquote"><a href="#Pullquote" class="headerlink" title="Pullquote"></a>Pullquote</h2><h3 id="Left"><a href="#Left" class="headerlink" title="Left"></a>Left</h3><blockquote class="pullquote left"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</blockquote>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempus molestie arcu, et fringilla mauris placerat ac. Nullam luctus bibendum risus. Ut cursus sed ipsum feugiat egestas. Suspendisse elementum, velit eu consequat consequat, augue lorem dapibus libero, eget pulvinar dolor est sit amet nulla. Suspendisse a porta tortor, et posuere mi. Pellentesque ultricies, mi quis volutpat malesuada, erat felis vulputate nisl, ac congue ante tortor ut ante. Proin aliquam sem vel mauris tincidunt, eget scelerisque tortor euismod. Nulla tincidunt enim nec commodo dictum. Mauris id sapien et orci gravida luctus id ut dui. In vel vulputate odio. Duis vel turpis molestie, scelerisque enim eu, lobortis eros. Cras at ipsum gravida, sagittis ante vel, viverra tellus. Nunc mauris turpis, elementum ullamcorper nisl pretium, ultrices cursus justo. Mauris porttitor commodo eros, ac ornare orci interdum in. Cras fermentum cursus leo sed mattis. In dignissim lorem sem, sit amet elementum mauris venenatis ac.</p>
+<h3 id="Right"><a href="#Right" class="headerlink" title="Right"></a>Right</h3><blockquote class="pullquote right"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</blockquote>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula justo, lobortis sit amet semper vel, dignissim sit amet libero. Praesent ac tempus ligula. Maecenas at gravida odio. Etiam tristique volutpat lacus eu faucibus. Donec non tempus arcu. Phasellus adipiscing, mauris nec mollis egestas, ipsum nunc auctor velit, et rhoncus lorem ipsum at ante. Praesent et sem in velit volutpat auctor. Duis vel mauris nulla. Maecenas mattis interdum ante, quis sagittis nibh cursus et. Nulla facilisi. Morbi convallis gravida tortor, ut fermentum enim gravida et. Nunc vel dictum nisl, non ultrices libero. Proin vestibulum felis eget orci consectetur lobortis. Vestibulum augue nulla, iaculis vitae augue vehicula, dignissim ultrices libero. Sed imperdiet urna et quam ultrices tincidunt nec ac magna. Etiam vel pharetra elit.</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2013/12/25/gallery-post/"
+      title="Gallery Post"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        Gallery Post
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2013/12/24/link-post-without-title/"
+      title="www.google.com"
+     >
+
+    <p class="title-text">
+      
+        www.google.com
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <div id="comment-card" class="comment-card">
+    <div class="title-bar">
+      <div class="title-dot"></div>
+      <div class="main-title">Comments </div>
+    </div>
+    <div id="vcomments"></div>
+  </div>
+  <script>
+      new Valine({
+          el: '#vcomments',
+          appId: "otj6RnDqPlfDyRNYDKdBkpm0-gzGzoHsz",
+          appKey: "nbXonETzfUSG9j8ojZ8eXmZb"
+      })
+  </script>
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Bocchi the Username<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vix">Vix</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
