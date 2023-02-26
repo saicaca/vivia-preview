@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
-<html theme="dark"  banner="true"  >
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
 <link href="/theme-preview-test/fontawesome/css/fontawesome.css" rel="stylesheet">
 <link href="/theme-preview-test/fontawesome/css/brands.css" rel="stylesheet">
 <link href="/theme-preview-test/fontawesome/css/solid.css" rel="stylesheet">
 <script src="/theme-preview-test/js/color.global.min.js" ></script>
-<script src="/theme-preview-test/js/light-dark-storage.js" ></script>
+<script src="/theme-preview-test/js/load-settings.js" ></script>
 <head>
   <meta charset="utf-8">
   
@@ -44,6 +45,8 @@
     <label for="vehicle1">Show Banner</label><br>
     <input type="checkbox" id="banner-checkbox" name="banner-checkbox" value="show">
   </div>
+  <input type="checkbox" id="banner-checkbox-copy" name="banner-checkbox-copy" value="show">
+
   <div id="preset-list">
     
       <div class="preset-btn" style="background-color: #f486aa;" data-hue="0"></div>
@@ -65,9 +68,10 @@
       <div class="preset-btn" style="background-color: #ec88c2;" data-hue="345"></div>
      
   </div>
-  <input type="range" min="0" max="360" value="260" class="slider" id="colorSlider" step="5" style="width: 100%;">
+  <input type="range" min="0" max="360" value="270" class="slider" id="colorSlider" step="5" style="width: 100%;">
   <p>Hue: <span id="hueValue"></span></p>
 </div>
+
 <script>
   let slider = document.getElementById("colorSlider");
   let output = document.getElementById("hueValue");
@@ -82,7 +86,20 @@
     localStorage.setItem('hue', hue);
     output.innerHTML = hue;
     slider.value = hue;
+    let colorType = {
+        'V': 1,
+        'M': 0.5,
+        'G': 0.25
+    }
+    for (let color of colors.default) {
+        for (let [name, mul] of Object.entries(colorType)) {
+          r.style.setProperty(`--${name}${color.name}`, getColorNode(color.l, color.c * mul, hue));
+        }
+    }
+
     for (let [theme, list] of Object.entries(colors)) {
+      if (theme == 'default')
+        continue;
       for (let color of list) {
         r.style.setProperty(`--${theme}-${color.name}`, getColorNode(color.l, color.c, hue));
       }
@@ -118,17 +135,17 @@
   // Banner switch
 
   function enableBanner() {
-    r.setAttribute("banner", "true");
+    r.setAttribute("showBanner", "true");
     localStorage.setItem('showBanner', "true");
   }
   
   function disableBanner() {
-    r.setAttribute("banner", "false");
+    r.setAttribute("showBanner", "false");
     localStorage.setItem('showBanner', "false");
   }
 
   let showBannerCheck = document.querySelector("input[name=banner-checkbox]");
-  if (r.getAttribute("banner") == "true") {
+  if (r.getAttribute("showBanner") == "true") {
     showBannerCheck.checked = true;
   }
   showBannerCheck.addEventListener('change', function() {
@@ -148,7 +165,7 @@
 </div>
  
    
-  <div id="main-grid" class="shadow">
+  <div id="main-grid" class="shadow   ">
     <div id="nav" class=""  >
       <navbar id="navbar">
   <nav id="title-nav">
@@ -172,9 +189,6 @@
     
   </nav>
   <nav id="sub-nav">
-    <a id="nav-search-btn" class="nav-icon">
-      <span class="material-symbols-rounded">palette</span>
-    </a>
     <a id="theme-btn" class="nav-icon">
       <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
       <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
@@ -214,12 +228,15 @@
   }
 </script>
     </div>
-    <div id="left-bar">
-      
-        <aside id="sidebar">
-  <div class="widget-wrap">
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
   <div class="info-card">
-    <image src=/theme-preview-test/assets/avatar.png class="avatar" ></image>
+    <div class="avatar">
+      <image src=/theme-preview-test/assets/avatar.png></image>
+      <div class="img-dim"></div>
+    </div>
     <div class="info">
       <div class="username">Bocchi the Username </div>
       <div class="dot"></div>
@@ -236,7 +253,8 @@
     </div>
   </div>
 </div>
- 
+
+  
   <div class="sticky">
     
       
@@ -246,17 +264,17 @@
     <div class="widget">
       <h3 class="widget-title">Categories</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/Foo/">
+            <a class="category-link" href="/theme-preview-test/categories/Foo/">
                 Foo
                 <div class="category-count">1</div>
             </a>
         <div class="children"><div class="category-box">
-            <a class="category-link" href="/categories/Foo/Bar/">
+            <a class="category-link" href="/theme-preview-test/categories/Foo/Bar/">
                 Bar
                 <div class="category-count">1</div>
             </a>
         <div class="children"><div class="category-box">
-            <a class="category-link" href="/categories/Foo/Bar/Baz/">
+            <a class="category-link" href="/theme-preview-test/categories/Foo/Bar/Baz/">
                 Baz
                 <div class="category-count">1</div>
             </a>
@@ -282,17 +300,17 @@
       <h3 class="widget-title">Archives</h3>
       
       
-        <a class="archive-link" href="/archives/2019/07 ">
+        <a class="archive-link" href="/theme-preview-test/archives/2019/07 ">
           July 2019 
           <div class="archive-count">1 </div>
         </a>
       
-        <a class="archive-link" href="/archives/2018/07 ">
+        <a class="archive-link" href="/theme-preview-test/archives/2018/07 ">
           July 2018 
           <div class="archive-count">1 </div>
         </a>
       
-        <a class="archive-link" href="/archives/2013/12 ">
+        <a class="archive-link" href="/theme-preview-test/archives/2013/12 ">
           December 2013 
           <div class="archive-count">15 </div>
         </a>
@@ -334,8 +352,7 @@
 
     
   </div>
-</aside>
-      
+</sidebar>
     </div>
     <div id="content-body">
        
@@ -354,14 +371,16 @@
             </div>
         </div>
       
-      <a class="archive-article-link" href="/2013/12/24/日本語テスト/" title="日本語テスト">
+      <a class="archive-article-link" href="/theme-preview-test/2013/12/24/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%86%E3%82%B9%E3%83%88/" title="日本語テスト">
         <div class="date">12-24</div>
         <div class="line">
             <div class="dot"></div>
         </div>
         <div class="title">
             <div class="title-inner">
-                日本語テスト
+                
+                    日本語テスト
+                
             </div>
         </div>
         <div class="tags">
@@ -371,14 +390,16 @@
     
       
       
-      <a class="archive-article-link" href="/2013/12/24/中文測試/" title="中文測試">
+      <a class="archive-article-link" href="/theme-preview-test/2013/12/24/%E4%B8%AD%E6%96%87%E6%B8%AC%E8%A9%A6/" title="中文測試">
         <div class="date">12-24</div>
         <div class="line">
             <div class="dot"></div>
         </div>
         <div class="title">
             <div class="title-inner">
-                中文測試
+                
+                    中文測試
+                
             </div>
         </div>
         <div class="tags">
