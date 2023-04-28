@@ -97,11 +97,12 @@
   --btn-text-light-text: var(--primary);
   --timeline-dim-dot: var(--dark-L50);
   --title-hover: var(--primary);
+  --title-active: var(--V65);
   --light-dot: var(--primary);
   --tag-dot: var(--dark-L25);
   --article-meta: rgba(255,255,255,0.5);
   --article-text: rgba(255,255,255,0.75);
-  --highlight-selection: var(--dark-L40);
+  --highlight-selection: var(--M35);
   --article-code-bg: var(--dark-L40);
   --article-block: var(--dark-L20);
   --link: var(--primary);
@@ -157,6 +158,7 @@
   --btn-text-content: var(--light-L70);
   --card-btn-hover: var(--M98);
   --card-btn-active: var(--M90);
+  --title-active: var(--V60);
   --link-hover-bg: var(--V95);
   --link-active-bg: var(--V90);
   --tag-dot: var(--btn-content);
@@ -746,7 +748,7 @@ navbar,
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: center;
 }
 #banner #banner-dim {
   height: 100%;
@@ -814,7 +816,7 @@ navbar {
 #title-nav a:active {
   background: var(--btn-text-active);
 }
-#title-nav a #vix-logo {
+#title-nav a #vivia-logo {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -835,7 +837,7 @@ navbar {
   transform: rotate(45deg);
   margin-right: 20px;
 }
-#title-nav a #vix-logo .dot {
+#title-nav a #vivia-logo .dot {
   height: 8px;
   width: 8px;
   border-radius: 50%;
@@ -1048,6 +1050,7 @@ navbar {
 }
 .article-main {
   border-radius: 16px;
+  z-index: 50;
   position: relative;
   background: var(--card-background);
   -webkit-transition: background 0.15s ease-out;
@@ -1177,10 +1180,10 @@ navbar {
   -webkit-align-items: center;
   align-items: center;
   background-size: cover;
-  -webkit-transition: background 0.15s ease-out;
-  -moz-transition: background 0.15s ease-out;
-  -ms-transition: background 0.15s ease-out;
-  transition: background 0.15s ease-out;
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  -ms-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
 }
 @media screen and (max-width: 767px) {
   .right-panel {
@@ -1203,7 +1206,17 @@ navbar {
   background: var(--enter-btn-active);
 }
 .right-panel.with-pic {
+  -webkit-transition: 0.3s all ease-out;
+  -moz-transition: 0.3s all ease-out;
+  -ms-transition: 0.3s all ease-out;
+  transition: 0.3s all ease-out;
   min-width: 35%;
+}
+.right-panel.with-pic:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
 }
 .right-panel.with-pic .overlay {
   height: 100%;
@@ -1266,6 +1279,9 @@ navbar {
 }
 a.article-title:hover {
   color: var(--title-hover);
+}
+a.article-title:active {
+  color: var(--title-active);
 }
 .article-title h1 {
   width: 100%;
@@ -2222,6 +2238,10 @@ a.article-title:hover {
   color: #ccc;
   line-height: 25.6px;
 }
+.article-entry pre ::selection,
+.article-entry .highlight ::selection {
+  background-color: var(--V40);
+}
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
   color: #666;
@@ -2636,7 +2656,7 @@ input[type="range"] {
 .info-card .avatar {
   width: 100%;
   border-radius: 16px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
