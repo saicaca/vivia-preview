@@ -353,6 +353,8 @@ body {
 #main-grid {
   display: grid;
   max-width: 1200px;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
   margin: auto;
   position: relative;
   grid-gap: 16px;
@@ -2003,6 +2005,9 @@ a.article-title:active {
   padding-top: 32px;
   padding-bottom: 32px;
 }
+.archive-main-card .archive-top {
+  padding: 0 40px;
+}
 .archive-main-card .archive-title {
   margin-left: 40px;
   margin-bottom: 16px;
@@ -2430,7 +2435,7 @@ pre .javascript .function {
   font-weight: bold;
   border: none;
   position: fixed;
-  bottom: 160px;
+  bottom: 240px;
   opacity: 0;
   -webkit-transition: background 0.15s ease-out, opacity 0.15s ease-out;
   -moz-transition: background 0.15s ease-out, opacity 0.15s ease-out;
@@ -2441,7 +2446,7 @@ pre .javascript .function {
 .back-to-top-btn span {
   font-size: 40px;
 }
-.title-bar {
+.main-title-bar {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -2456,7 +2461,7 @@ pre .javascript .function {
   margin-bottom: 6px;
   position: relative;
 }
-.title-bar .title-dot {
+.main-title-bar .main-title-dot {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -2474,10 +2479,10 @@ pre .javascript .function {
   -ms-transform: translate(0, -1px);
   transform: translate(0, -1px);
 }
-.title-bar h1 {
+.main-title-bar h1 {
   width: 100%;
 }
-.title-bar h1 a {
+.main-title-bar h1 a {
   width: 100%;
   display: block;
 }
