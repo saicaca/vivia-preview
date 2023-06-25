@@ -2617,6 +2617,23 @@ input[type="range"] {
   -moz-transition: color 0.15s ease-out;
   -ms-transition: color 0.15s ease-out;
   transition: color 0.15s ease-out;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.widget-title:before {
+  content: '';
+  display: block;
+  height: 14px;
+  width: 4px;
+  border-radius: 2px;
+  background-color: var(--primary);
+  margin-right: 10px;
+  margin-top: 4px;
+  margin-left: -4px;
 }
 .widget,
 .info-card {
