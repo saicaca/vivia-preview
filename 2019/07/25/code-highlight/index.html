@@ -75,7 +75,7 @@
       <div class="preset-btn" style="background-color: #ec88c2;" data-hue="345"></div>
      
   </div>
-  <input type="range" min="0" max="360" value="270" class="slider" id="colorSlider" step="5" style="width: 100%;">
+  <input type="range" min="0" max="360" value="250" class="slider" id="colorSlider" step="5" style="width: 100%;">
   <p>Hue: <span id="hueValue"></span></p>
 </div>
 
@@ -493,6 +493,7 @@
 </article>
 
 
+  
   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
   <div id="comment-card" class="comment-card">
     <div class="main-title-bar">
@@ -502,11 +503,7 @@
     <div id="vcomments"></div>
   </div>
   <script>
-      new Valine({
-          el: '#vcomments',
-          appId: "otj6RnDqPlfDyRNYDKdBkpm0-gzGzoHsz",
-          appKey: "nbXonETzfUSG9j8ojZ8eXmZb"
-      })
+      new Valine({"enable":true,"appId":"otj6RnDqPlfDyRNYDKdBkpm0-gzGzoHsz","appKey":"nbXonETzfUSG9j8ojZ8eXmZb","serverURLs":null,"el":"#vcomments"});
   </script>
  
     </div>

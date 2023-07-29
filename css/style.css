@@ -1,75 +1,75 @@
 :root {
   --V05: #000001;
-  --V10: #020309;
-  --V15: #070a18;
-  --V20: #0f1528;
-  --V25: #18203a;
-  --V30: #222c4c;
-  --V35: #2c385f;
-  --V40: #374573;
-  --V45: #425287;
-  --V50: #4d5f9c;
-  --V55: #596db2;
-  --V60: #647bc8;
-  --V65: #708ade;
-  --V70: #7d98f5;
-  --V75: #8ca8ff;
-  --V80: #a2baff;
-  --V85: #b9ccff;
-  --V90: #d0ddff;
-  --V95: #e8eeff;
-  --V98: #f6f8ff;
+  --V10: #010408;
+  --V15: #030c17;
+  --V20: #071727;
+  --V25: #0d2339;
+  --V30: #142f4b;
+  --V35: #1b3c5d;
+  --V40: #224a71;
+  --V45: #2a5885;
+  --V50: #32669a;
+  --V55: #3a75af;
+  --V60: #4284c5;
+  --V65: #4a94db;
+  --V70: #53a3f2;
+  --V75: #63b3ff;
+  --V80: #86c3ff;
+  --V85: #a6d2ff;
+  --V90: #c3e2ff;
+  --V95: #e2f0ff;
+  --V98: #f4f9ff;
   --M05: #000001;
-  --M10: #030306;
-  --M15: #090b12;
-  --M20: #12161f;
-  --M25: #1d212e;
-  --M30: #282d3d;
-  --M35: #333a4d;
-  --M40: #3f475e;
-  --M45: #4b546f;
-  --M50: #586280;
-  --M55: #657092;
-  --M60: #727fa5;
-  --M65: #808eb8;
-  --M70: #8d9dcb;
-  --M75: #9cacdb;
-  --M80: #b0bde2;
-  --M85: #c3cde9;
-  --M90: #d7def1;
-  --M95: #ebeef7;
-  --M98: #f7f8fc;
+  --M10: #020306;
+  --M15: #070c11;
+  --M20: #0f171f;
+  --M25: #18232d;
+  --M30: #222f3c;
+  --M35: #2d3c4c;
+  --M40: #374a5d;
+  --M45: #42576e;
+  --M50: #4d667f;
+  --M55: #597491;
+  --M60: #6583a3;
+  --M65: #7193b6;
+  --M70: #7da2c9;
+  --M75: #8cb2d9;
+  --M80: #a4c1e0;
+  --M85: #bbd0e8;
+  --M90: #d1e0f0;
+  --M95: #e8eff7;
+  --M98: #f6f9fc;
   --G05: #000001;
   --G10: #030304;
-  --G15: #0a0b0e;
-  --G20: #14161b;
-  --G25: #1f2128;
-  --G30: #2b2e36;
-  --G35: #373a44;
-  --G40: #434753;
-  --G45: #505562;
-  --G50: #5d6372;
-  --G55: #6b7182;
-  --G60: #798093;
-  --G65: #878fa4;
-  --G70: #969eb5;
-  --G75: #a5adc5;
-  --G80: #b7bdd0;
-  --G85: #c8cddb;
-  --G90: #dadee7;
-  --G95: #edeef3;
-  --G98: #f8f8fa;
-  --dark-L16: #0b0d14;
-  --dark-L20: #12161f;
-  --dark-L25: #1e212b;
-  --dark-L40: #3f475e;
-  --dark-L50: #586280;
-  --dark-L75: #90aafa;
-  --light-L55: #576cb7;
-  --light-L70: #7d98f5;
-  --light-L95: #e9eefc;
-  --light-L95G: #eceef5;
-  --light-L98: #f7f8fc;
+  --G15: #090b0e;
+  --G20: #13161a;
+  --G25: #1d2228;
+  --G30: #282f35;
+  --G35: #343b44;
+  --G40: #404952;
+  --G45: #4c5662;
+  --G50: #596571;
+  --G55: #667381;
+  --G60: #738292;
+  --G65: #8191a3;
+  --G70: #8ea1b4;
+  --G75: #9eb0c4;
+  --G80: #b1c0cf;
+  --G85: #c4cfdb;
+  --G90: #d7dfe7;
+  --G95: #ebeff3;
+  --G98: #f7f9fa;
+  --dark-L16: #080e14;
+  --dark-L20: #0f171f;
+  --dark-L25: #1a222b;
+  --dark-L40: #374a5d;
+  --dark-L50: #4d667f;
+  --dark-L75: #70b3f7;
+  --light-L55: #3275b4;
+  --light-L70: #53a3f2;
+  --light-L95: #e5f0fc;
+  --light-L95G: #eaeff5;
+  --light-L98: #f6f9fc;
   --neut-L90: rgba(255,255,255,0.9);
   --neut-L75: rgba(255,255,255,0.75);
   --neut-L50: rgba(255,255,255,0.5);
@@ -1224,12 +1224,6 @@ navbar {
   transition: 0.3s all ease-out;
   min-width: 35%;
 }
-.right-panel.with-pic:hover {
-  -webkit-transform: scale(1.05);
-  -moz-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
 .right-panel.with-pic .overlay {
   height: 100%;
   width: 100%;
@@ -2027,9 +2021,6 @@ a.article-title:active {
   margin-bottom: 16px;
 }
 .archive-main-card .year-line {
-  font-size: 24px;
-  color: var(--archive-year);
-  font-weight: bold;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -2046,8 +2037,15 @@ a.article-title:active {
   margin-top: 8px;
 }
 .archive-main-card .year-line .year-num {
+  font-size: 24px;
+  color: var(--archive-year);
+  font-weight: bold;
   width: 10%;
   text-align: right;
+  -webkit-transition: color 0.15s ease-out;
+  -moz-transition: color 0.15s ease-out;
+  -ms-transition: color 0.15s ease-out;
+  transition: color 0.15s ease-out;
 }
 @media screen and (max-width: 767px) {
   .archive-main-card .year-line .year-num {
@@ -2086,6 +2084,14 @@ a.article-title:active {
   outline: 3px solid var(--light-dot);
   outline-offset: -2px;
   z-index: 1;
+}
+.archive-main-card .year-line .article-count {
+  width: 40%;
+  color: var(--neut-L50);
+  -webkit-transition: color 0.15s ease-out;
+  -moz-transition: color 0.15s ease-out;
+  -ms-transition: color 0.15s ease-out;
+  transition: color 0.15s ease-out;
 }
 .archive-main-card .archive-article-link {
   display: -webkit-box;
@@ -2136,6 +2142,10 @@ a.article-title:active {
   color: var(--archive-date);
   width: 10%;
   text-align: right;
+  -webkit-transition: color 0.15s ease-out;
+  -moz-transition: color 0.15s ease-out;
+  -ms-transition: color 0.15s ease-out;
+  transition: color 0.15s ease-out;
 }
 @media screen and (max-width: 767px) {
   .archive-main-card .archive-article-link .date {
@@ -2177,6 +2187,10 @@ a.article-title:active {
   left: calc(50% - 1px);
   top: -50%;
   pointer-events: none;
+  -webkit-transition: border-color 0.15s ease-out;
+  -moz-transition: border-color 0.15s ease-out;
+  -ms-transition: border-color 0.15s ease-out;
+  transition: border-color 0.15s ease-out;
 }
 @media screen and (max-width: 767px) {
   .archive-main-card .archive-article-link .line:before {
@@ -2219,6 +2233,10 @@ a.article-title:active {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  -webkit-transition: color 0.15s ease-out;
+  -moz-transition: color 0.15s ease-out;
+  -ms-transition: color 0.15s ease-out;
+  transition: color 0.15s ease-out;
 }
 @media screen and (max-width: 767px) {
   .archive-main-card .archive-article-link .tags {
