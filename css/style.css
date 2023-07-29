@@ -1390,6 +1390,7 @@ a.article-title:active {
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
+  margin: 1.2em 0;
 }
 .article-entry blockquote footer {
   font-size: 16px;
@@ -1614,6 +1615,10 @@ a.article-title:active {
   font-weight: bold;
   font-size: 16px;
   overflow: hidden;
+  -webkit-transition: background 0.15s ease-out, color 0.15s ease-out;
+  -moz-transition: background 0.15s ease-out, color 0.15s ease-out;
+  -ms-transition: background 0.15s ease-out, color 0.15s ease-out;
+  transition: background 0.15s ease-out, color 0.15s ease-out;
 }
 #article-nav .article-nav-btn i {
   color: var(--primary);
@@ -1762,10 +1767,18 @@ a.article-title:active {
   border-radius: 8px !important;
   padding: 16px !important;
   margin-bottom: 12px !important;
+  -webkit-transition: background 0.15s ease-out;
+  -moz-transition: background 0.15s ease-out;
+  -ms-transition: background 0.15s ease-out;
+  transition: background 0.15s ease-out;
 }
 .comment-card .vinput {
   font-size: 14px !important;
   color: var(--neut-L75) !important;
+  -webkit-transition: background 0.15s ease-out;
+  -moz-transition: background 0.15s ease-out;
+  -ms-transition: background 0.15s ease-out;
+  transition: background 0.15s ease-out;
 }
 .comment-card ::placeholder {
   color: var(--neut-L30);
@@ -2264,6 +2277,10 @@ a.article-title:active {
   -webkit-align-items: center;
   align-items: center;
   height: 72px;
+  -webkit-transition: background 0.15s ease-out, color 0.15s ease-out;
+  -moz-transition: background 0.15s ease-out, color 0.15s ease-out;
+  -ms-transition: background 0.15s ease-out, color 0.15s ease-out;
+  transition: background 0.15s ease-out, color 0.15s ease-out;
 }
 .article-entry pre,
 .article-entry .highlight {
@@ -2544,6 +2561,10 @@ pre .javascript .function {
   font-size: 16px;
   font-weight: medium;
   color: var(--neut-L75);
+  -webkit-transition: color 0.15s ease-out;
+  -moz-transition: color 0.15s ease-out;
+  -ms-transition: color 0.15s ease-out;
+  transition: color 0.15s ease-out;
 }
 .color-picker input {
   margin-bottom: 12px;
