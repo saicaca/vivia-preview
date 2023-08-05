@@ -13,6 +13,11 @@
   
   <title>Tag: Foo | Vivia Preview</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/vivia-preview/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/vivia-preview/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/vivia-preview/css/fonts/MaterialSymbolsRounded.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
   <meta property="og:type" content="website">
 <meta property="og:title" content="Vivia Preview">
 <meta property="og:url" content="https://saicaca.github.io/vivia-preview/tags/Foo/index.html">
@@ -58,7 +63,7 @@
     
       <div class="preset-btn" style="background-color: #00cab1;" data-hue="180"></div>
     
-      <div class="preset-btn" style="background-color: #63b3ff;" data-hue="250"></div>
+      <div class="preset-btn" style="background-color: #4ab8fd;" data-hue="240"></div>
     
       <div class="preset-btn" style="background-color: #8ca8ff;" data-hue="270"></div>
     
@@ -70,8 +75,7 @@
      
   </div>
   <input type="range" min="0" max="360" value="250" class="slider" id="colorSlider" step="5" style="width: 100%;">
-  <p class="hue-text">Hue: <span id="hueValue"></span></p>
-  <p class="oklch-tip">You are using an outdated browser that does not support OKLCH colors. The color setting will not take effect.</p>
+  <p>Hue: <span id="hueValue"></span></p>
 </div>
 
 <script>
@@ -88,14 +92,38 @@
     localStorage.setItem('hue', hue);
     output.innerHTML = hue;
     slider.value = hue;
+    let colorType = {
+        'V': 1,
+        'M': 0.5,
+        'G': 0.25
+    }
+    for (let color of colors.default) {
+        for (let [name, mul] of Object.entries(colorType)) {
+          r.style.setProperty(`--${name}${color.name}`, getColorNode(color.l, color.c * mul, hue));
+        }
+    }
 
-    r.style.setProperty(`--primary-hue`, hue);
+    for (let [theme, list] of Object.entries(colors)) {
+      if (theme == 'default')
+        continue;
+      for (let color of list) {
+        r.style.setProperty(`--${theme}-${color.name}`, getColorNode(color.l, color.c, hue));
+      }
+    }
   }
 
-  let storedHue = localStorage.getItem('hue');
-  if (storedHue) {
-    setHue(storedHue);
-  }
+  let colors;
+  fetch("/vivia-preview/colors.json")
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      colors = data;
+      let storedHue = localStorage.getItem('hue');
+      if (storedHue) {
+        setHue(storedHue);
+      }    
+    }) 
 
   slider.oninput = function() {
     output.innerHTML = this.value;
@@ -123,7 +151,7 @@
   }
 
   let showBannerCheck = document.querySelector("input[name=banner-checkbox]");
-  if (r.getAttribute("showBanner") === "true") {
+  if (r.getAttribute("showBanner") == "true") {
     showBannerCheck.checked = true;
   }
   showBannerCheck.addEventListener('change', function() {
