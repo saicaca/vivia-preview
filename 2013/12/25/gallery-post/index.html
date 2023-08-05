@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://saicaca.github.io/assets/wallpaper-878514.jpg">
 <meta property="og:image" content="https://via.placeholder.com/350x150.jpg">
 <meta property="article:published_time" content="2013-12-24T16:16:18.000Z">
-<meta property="article:modified_time" content="2023-01-19T15:05:01.005Z">
+<meta property="article:modified_time" content="2023-08-01T14:38:52.038Z">
 <meta property="article:author" content="Bocchi the Username">
 <meta property="article:tag" content="Test">
 <meta property="article:tag" content="Image">
@@ -70,7 +70,7 @@
     
       <div class="preset-btn" style="background-color: #00cab1;" data-hue="180"></div>
     
-      <div class="preset-btn" style="background-color: #4ab8fd;" data-hue="240"></div>
+      <div class="preset-btn" style="background-color: #63b3ff;" data-hue="250"></div>
     
       <div class="preset-btn" style="background-color: #8ca8ff;" data-hue="270"></div>
     
@@ -82,7 +82,8 @@
      
   </div>
   <input type="range" min="0" max="360" value="250" class="slider" id="colorSlider" step="5" style="width: 100%;">
-  <p>Hue: <span id="hueValue"></span></p>
+  <p class="hue-text">Hue: <span id="hueValue"></span></p>
+  <p class="oklch-tip">You are using an outdated browser that does not support OKLCH colors. The color setting will not take effect.</p>
 </div>
 
 <script>
@@ -99,38 +100,14 @@
     localStorage.setItem('hue', hue);
     output.innerHTML = hue;
     slider.value = hue;
-    let colorType = {
-        'V': 1,
-        'M': 0.5,
-        'G': 0.25
-    }
-    for (let color of colors.default) {
-        for (let [name, mul] of Object.entries(colorType)) {
-          r.style.setProperty(`--${name}${color.name}`, getColorNode(color.l, color.c * mul, hue));
-        }
-    }
 
-    for (let [theme, list] of Object.entries(colors)) {
-      if (theme == 'default')
-        continue;
-      for (let color of list) {
-        r.style.setProperty(`--${theme}-${color.name}`, getColorNode(color.l, color.c, hue));
-      }
-    }
+    r.style.setProperty(`--primary-hue`, hue);
   }
 
-  let colors;
-  fetch("/vivia-preview/colors.json")
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      colors = data;
-      let storedHue = localStorage.getItem('hue');
-      if (storedHue) {
-        setHue(storedHue);
-      }    
-    }) 
+  let storedHue = localStorage.getItem('hue');
+  if (storedHue) {
+    setHue(storedHue);
+  }
 
   slider.oninput = function() {
     output.innerHTML = this.value;
@@ -158,7 +135,7 @@
   }
 
   let showBannerCheck = document.querySelector("input[name=banner-checkbox]");
-  if (r.getAttribute("showBanner") == "true") {
+  if (r.getAttribute("showBanner") === "true") {
     showBannerCheck.checked = true;
   }
   showBannerCheck.addEventListener('change', function() {
@@ -294,7 +271,22 @@
                 Baz
                 <div class="category-count">1</div>
             </a>
-        </div></div></div></div></div>
+        </div></div></div></div>
+            <a class="category-link" href="/vivia-preview/categories/Test/">
+                Test
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/vivia-preview/categories/Link/">
+                Link
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/vivia-preview/categories/Markdown/">
+                Markdown
+                <div class="category-count">1</div>
+            </a>
+        </div>
     </div>
   </div>
 
@@ -389,19 +381,19 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_clknlvbvb0007ik9k6yt91cmh">
+      <a class="article-gallery-img" rel="gallery_clky07fh600087c9kea1j9ulr">
         <img src="/vivia-preview/assets/wallpaper-2572384.jpg" itemprop="image">
       </a>
     
-      <a class="article-gallery-img" rel="gallery_clknlvbvb0007ik9k6yt91cmh">
+      <a class="article-gallery-img" rel="gallery_clky07fh600087c9kea1j9ulr">
         <img src="/vivia-preview/assets/wallpaper-2311325.jpg" itemprop="image">
       </a>
     
-      <a class="article-gallery-img" rel="gallery_clknlvbvb0007ik9k6yt91cmh">
+      <a class="article-gallery-img" rel="gallery_clky07fh600087c9kea1j9ulr">
         <img src="/vivia-preview/assets/wallpaper-878514.jpg" itemprop="image">
       </a>
     
-      <a class="article-gallery-img" rel="gallery_clknlvbvb0007ik9k6yt91cmh">
+      <a class="article-gallery-img" rel="gallery_clky07fh600087c9kea1j9ulr">
         <img src="https://via.placeholder.com/350x150.jpg" itemprop="image">
       </a>
     
@@ -431,7 +423,7 @@
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-    Uncategorized 
+  <a class="meta-cate-link" href="/vivia-preview/categories/Test/">Test</a>
    
 </div>
   
