@@ -11,6 +11,9 @@
   <meta charset="utf-8">
   
   
+  
+
+  
   <title>Vivia Preview</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -869,7 +872,7 @@ ParagraphLorem ipsum dolor sit amet, test link consectetur adipiscing elit. Stro
 
     </div>
     <div class="back-to-top-wrapper">
-    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
         <span class="material-symbols-rounded">keyboard_arrow_up</span>
     </button>
 </div>
@@ -881,9 +884,9 @@ ParagraphLorem ipsum dolor sit amet, test link consectetur adipiscing elit. Stro
     let btn = document.getElementById('back-to-top-btn');
     function scrollFunction() {
         if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
-            btn.style.opacity = 1;
+            btn.classList.remove('hide')
         } else {
-            btn.style.opacity = 0;
+            btn.classList.add('hide')
         }
     }
     window.onscroll = function() {

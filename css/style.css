@@ -47,8 +47,8 @@
     --btn-active: oklch(0.5 0.05 var(--primary-hue));
     --card-btn-hover: oklch(0.3 0.03 var(--primary-hue));
     --card-btn-active: oklch(0.35 0.035 var(--primary-hue));
-    --btn-text-hover: oklch(0.2 0.02 var(--primary-hue));
-    --btn-text-active: oklch(0.15 0.015 var(--primary-hue));
+    --btn-text-hover: oklch(0.3 0.03 var(--primary-hue));
+    --btn-text-active: oklch(0.27 0.027 var(--primary-hue));
     --timeline-dim-dot: oklch(0.5 0.05 var(--primary-hue));
     --title-active: oklch(0.65 0.12 var(--primary-hue));
     --tag-dot: oklch(0.25 0.02 var(--primary-hue));
@@ -82,8 +82,8 @@
     --btn-active: #4d667f;
     --card-btn-hover: #222f3c;
     --card-btn-active: #2d3c4c;
-    --btn-text-hover: #0f171f;
-    --btn-text-active: #070c11;
+    --btn-text-hover: #222f3c;
+    --btn-text-active: #1c2833;
     --timeline-dim-dot: #4d667f;
     --title-active: #5194d5;
     --tag-dot: #1a222b;
@@ -1172,7 +1172,7 @@ navbar {
   }
 }
 .article-header h1 {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 .article-header .meta-info-bar {
   margin-bottom: 6px;
@@ -1394,14 +1394,18 @@ a.article-title:active {
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   margin: 1.2em 0;
+  -webkit-transition: background 0.15s ease-out;
+  -moz-transition: background 0.15s ease-out;
+  -ms-transition: background 0.15s ease-out;
+  transition: background 0.15s ease-out;
 }
-.article-entry blockquote footer {
+.article-entry footer {
   font-size: 16px;
   margin: 1.6em 0;
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   text-align: right;
 }
-.article-entry blockquote footer cite:before {
+.article-entry footer cite:before {
   content: "—";
   padding: 0 0.5em;
 }
@@ -2488,15 +2492,23 @@ pre .javascript .function {
   border: none;
   position: fixed;
   bottom: 240px;
-  opacity: 0;
-  -webkit-transition: background 0.15s ease-out, opacity 0.15s ease-out;
-  -moz-transition: background 0.15s ease-out, opacity 0.15s ease-out;
-  -ms-transition: background 0.15s ease-out, opacity 0.15s ease-out;
-  transition: background 0.15s ease-out, opacity 0.15s ease-out;
+  opacity: 1;
+  -webkit-transition: background 0.15s ease-out, opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  -moz-transition: background 0.15s ease-out, opacity 0.15s ease-out, -moz-transform 0.15s ease-out;
+  -ms-transition: background 0.15s ease-out, opacity 0.15s ease-out, -ms-transform 0.15s ease-out;
+  transition: background 0.15s ease-out, opacity 0.15s ease-out, transform 0.15s ease-out;
   cursor: pointer;
 }
 .back-to-top-btn span {
   font-size: 40px;
+}
+.back-to-top-btn.hide {
+  -webkit-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+  opacity: 0;
+  pointer-events: none;
 }
 .main-title-bar {
   display: -webkit-box;
