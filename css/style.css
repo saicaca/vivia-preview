@@ -2539,22 +2539,13 @@ pre .javascript .function {
   position: relative;
 }
 .main-title-bar .main-title-dot {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
-  display: flex;
   width: 4px;
   height: 20px;
   position: absolute;
   left: -16px;
+  top: 9.5px;
   background: var(--primary);
   border-radius: 2px;
-  -webkit-transform: translate(0, -1px);
-  -moz-transform: translate(0, -1px);
-  -ms-transform: translate(0, -1px);
-  transform: translate(0, -1px);
 }
 .main-title-bar h1 {
   width: 100%;
